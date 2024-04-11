@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Weather Forecast for Basel on {{ weather.date }}</h1>
+    <p>Max Temperature: {{ weather.max_temp|round }}</p>
+    <p>Min Temperature: {{ weather.min_temp|round }}</p>
+    <p>Average Temperature: {{ weather.avg_temp|round }}</p>
+    <p>Cloud Cover: {{ weather.cloud_cover|round }}</p>
+    {% if weather.cloud_cover > 80 %}
+        <img src="{{ url_for('static', filename='clowdy.jpg') }}" alt="Cloudy">
+    {% elif 30 < weather.cloud_cover < 80 %}
+        <img src="{{ url_for('static', filename='almostclowdy.jpg') }}" alt="Almost Cloudy">
+    {% else %}
+        <img src="{{ url_for('static', filename='clear.jpg') }}" alt="Clear">
+    {% endif %}
+</body>
+</html>
